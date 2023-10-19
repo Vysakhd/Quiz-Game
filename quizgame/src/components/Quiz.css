@@ -1,0 +1,67 @@
+.QuizPage {
+    text-align: center;
+  }
+  
+  .QuizPage h1 {
+    font-size: 24px;
+    margin: 20px;
+  }
+  
+  .quiz-container {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .question {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .options {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .option {
+    margin-bottom: 10px;
+  }
+  
+  .answer-feedback-correct {
+    font-size: 18px;
+    color: green;
+  }
+  
+  answer-feedback-incorrect {
+    font-size: 18px;
+    color: red;
+  }
+  
+  .next-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  check-answer-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+.correct-answer {
+    color: green;
+  }
+  .wrong-answer {
+    color: red;
+  }
+  
