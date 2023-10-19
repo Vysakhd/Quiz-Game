@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Quiz.css';
+import Results from './Results'; 
 
 function QuizPage() {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState('');
   const [isCorrect, setIsCorrect] = useState(null);
+  const [correctAnswers, setCorrectAnswers] = useState(0); 
+  const [quizFinished, setQuizFinished] = useState(false); 
 
   useEffect(() => {
     fetchQuestions();
@@ -37,6 +40,10 @@ function QuizPage() {
     const currentQuestion = questions[currentQuestionIndex];
     const isAnswerCorrect = selectedOption === currentQuestion.correct_answer;
     setIsCorrect(isAnswerCorrect);
+
+    if (isAnswerCorrect) {
+      setCorrectAnswers(correctAnswers + 1);
+    }
   };
 
   const moveToNextQuestion = () => {
@@ -45,7 +52,7 @@ function QuizPage() {
       setSelectedOption('');
       setIsCorrect(null);
     } else {
-      console.log('End of the quiz');
+      setQuizFinished(true); 
     }
   };
 
@@ -62,32 +69,49 @@ function QuizPage() {
     return '';
   };
 
+  const restartQuiz = () => {
+    setQuizFinished(false);
+    setCurrentQuestionIndex(0);
+    setCorrectAnswers(0);
+    setSelectedOption('');
+    setIsCorrect(null);
+    fetchQuestions();
+  };
+
   return (
     <div className="QuizPage">
       <h1>Quiz Page</h1>
       <div className="quiz-container">
-        {questions.length > 0 && (
-          <div>
-            <p className="question">{questions[currentQuestionIndex].question}</p>
-            <ul className="options">
-              {questions[currentQuestionIndex].options.map((option, index) => (
-                <li key={index} className={`option ${optionClass(option)}`}>
-                  <label>
-                    <input
-                      type="radio"
-                      name="options"
-                      value={option}
-                      checked={selectedOption === option}
-                      onChange={() => setSelectedOption(option)}
-                    />
-                    {option}
-                  </label>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {quizFinished ? ( 
+          <Results
+            totalQuestions={questions.length}
+            correctAnswers={correctAnswers}
+            onRestart={restartQuiz}
+          />
+        ) : (
+          questions.length > 0 && (
+            <div>
+              <p className="question">{questions[currentQuestionIndex].question}</p>
+              <ul className="options">
+                {questions[currentQuestionIndex].options.map((option, index) => (
+                  <li key={index} className={`option ${optionClass(option)}`}>
+                    <label>
+                      <input
+                        type="radio"
+                        name="options"
+                        value={option}
+                        checked={selectedOption === option}
+                        onChange={() => setSelectedOption(option)}
+                      />
+                      {option}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
         )}
-        {isCorrect !== null && (
+        {isCorrect !== null && !quizFinished && (
           <div>
             {isCorrect ? (
               <p className="answer-feedback-correct">Correct!</p>
@@ -99,7 +123,7 @@ function QuizPage() {
             </button>
           </div>
         )}
-        {isCorrect === null && (
+        {isCorrect === null && !quizFinished && (
           <div>
             <button className="check-answer-button" onClick={checkAnswer}>
               Check Answer
@@ -110,7 +134,6 @@ function QuizPage() {
     </div>
   );
 }
-
 
 const shuffleArray = (array) => {
   const shuffledArray = [...array];

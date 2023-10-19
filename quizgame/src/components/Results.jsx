@@ -1,14 +1,12 @@
 import React from 'react';
 
-function Results({ totalQuestions, correctAnswers, onPlayAgain }) {
+function Results({ totalQuestions, correctAnswers, onRestart }) {
   return (
-    <div className="results">
+    <div className="Results">
       <h2>Quiz Results</h2>
       <p>Total Questions: {totalQuestions}</p>
       <p>Correct Answers: {correctAnswers}</p>
-      <button className="play-again-button" onClick={onPlayAgain}>
-        Play Again
-      </button>
+      <button onClick={onRestart}>Play Again</button>
     </div>
   );
 }
