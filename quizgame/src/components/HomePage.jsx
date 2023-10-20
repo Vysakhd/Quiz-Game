@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import QuizPage from '../components/QuizPage';
+import './HomePage.css'
 
 function HomePage() {
   const [quizStart, setQuizStarted] = useState(false);

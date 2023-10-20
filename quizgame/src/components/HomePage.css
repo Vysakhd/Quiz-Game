@@ -1,0 +1,29 @@
+.HomePage {
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9; 
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .HomePage h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .HomePage button {
+    background-color: #0074cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: grab;
+    margin-top: 20px;
+  }
+  
+  .HomePage button:hover {
+    background-color: #0054aa;
+  }
+  
