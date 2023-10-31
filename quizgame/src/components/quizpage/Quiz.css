@@ -23,16 +23,17 @@
   }
   
   .answer-feedback-correct {
-    font-size: 18px;
+    font-size: 24px;
     color: green;
   }
   
-  answer-feedback-incorrect {
-    font-size: 18px;
+  .answer-feedback-incorrect {
+    font-size: 24px;
     color: red;
   }
   
   .next-button {
+    text-align: left;
     padding: 10px 20px;
     font-size: 16px;
     background: blue;
@@ -91,6 +92,9 @@
   
   .Results button:hover {
     background-color: #0054aa;
+  }
+  .dots{
+    text-align: left;
   }
    
   

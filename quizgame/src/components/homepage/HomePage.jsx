@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import QuizPage from '../components/QuizPage';
+import QuizPage from '../quizpage/QuizPage';
 import './HomePage.css'
 
 function HomePage() {
